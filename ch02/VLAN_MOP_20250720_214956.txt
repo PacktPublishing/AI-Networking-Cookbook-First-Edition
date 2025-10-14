@@ -1,0 +1,100 @@
+Method of Procedure (MOP) Document
+
+Title: VLAN Configuration on Cisco IOS Device (SW-CORE-01)
+
+Objective: To configure VLANs on Cisco IOS device (SW-CORE-01) and assign them to the respective ports.
+
+Prerequisites:
+1. Network administrator credentials for the Cisco IOS device.
+2. Ensure that the device is powered on and connected to the network.
+3. Ensure that the trunk and access ports are operational.
+
+Configuration Steps:
+
+1. Login to the Cisco IOS device (SW-CORE-01) using the network administrator credentials.
+
+2. Enter the global configuration mode:
+   ```
+   SW-CORE-01>enable
+   SW-CORE-01#configure terminal
+   ```
+
+3. Create the VLANs and assign names:
+   ```
+   SW-CORE-01(config)#vlan 10
+   SW-CORE-01(config-vlan)#name USERS
+   SW-CORE-01(config-vlan)#exit
+
+   SW-CORE-01(config)#vlan 20
+   SW-CORE-01(config-vlan)#name SERVERS
+   SW-CORE-01(config-vlan)#exit
+
+   SW-CORE-01(config)#vlan 30
+   SW-CORE-01(config-vlan)#name GUEST
+   SW-CORE-01(config-vlan)#exit
+   ```
+
+4. Configure the trunk ports to allow the VLANs:
+   ```
+   SW-CORE-01(config)#interface GigabitEthernet1/0/1
+   SW-CORE-01(config-if)#switchport trunk encapsulation dot1q
+   SW-CORE-01(config-if)#switchport mode trunk
+   SW-CORE-01(config-if)#switchport trunk allowed vlan 10,20,30
+   SW-CORE-01(config-if)#exit
+
+   SW-CORE-01(config)#interface GigabitEthernet1/0/2
+   SW-CORE-01(config-if)#switchport trunk encapsulation dot1q
+   SW-CORE-01(config-if)#switchport mode trunk
+   SW-CORE-01(config-if)#switchport trunk allowed vlan 10,20,30
+   SW-CORE-01(config-if)#exit
+   ```
+
+5. Assign the VLANs to the access ports:
+   ```
+   SW-CORE-01(config)#interface GigabitEthernet1/0/10
+   SW-CORE-01(config-if)#switchport mode access
+   SW-CORE-01(config-if)#switchport access vlan 10
+   SW-CORE-01(config-if)#exit
+
+   SW-CORE-01(config)#interface GigabitEthernet1/0/11
+   SW-CORE-01(config-if)#switchport mode access
+   SW-CORE-01(config-if)#switchport access vlan 20
+   SW-CORE-01(config-if)#exit
+
+   SW-CORE-01(config)#interface GigabitEthernet1/0/12
+   SW-CORE-01(config-if)#switchport mode access
+   SW-CORE-01(config-if)#switchport access vlan 30
+   SW-CORE-01(config-if)#exit
+   ```
+
+6. Save the configuration:
+   ```
+   SW-CORE-01#copy running-config startup-config
+   ```
+
+Verification Steps:
+
+1. Verify the VLAN configuration:
+   ```
+   SW-CORE-01#show vlan
+   ```
+
+2. Verify the trunk port configuration:
+   ```
+   SW-CORE-01#show interfaces trunk
+   ```
+
+3. Verify the access port configuration:
+   ```
+   SW-CORE-01#show interfaces status
+   ```
+
+Rollback Procedure:
+
+In case of any issues, rollback to the previous configuration using the following command:
+```
+SW-CORE-01#configure replace flash:backup-config
+```
+Ensure to take a backup of the current configuration before making any changes.
+
+End of Procedure.

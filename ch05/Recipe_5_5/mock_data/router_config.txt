@@ -1,0 +1,9 @@
+hostname TestRouter
+interface eth0
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+interface eth1
+ ip address 10.0.1.1 255.255.255.0
+switchport mode access
+router ospf 1
+ network 192.168.1.0 0.0.0.255 area 0

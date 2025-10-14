@@ -1,0 +1,71 @@
+# Cisco ASA Logs
+%ASA-6-302013: Built inbound TCP connection 12345 for outside:203.0.113.100/443 (203.0.113.100/443) to inside:10.0.1.50/80 (10.0.1.50/80)
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/1337 dst inside:10.0.1.100/22 by access-group outside_in
+%ASA-6-302014: Teardown TCP connection 12345 for outside:203.0.113.100/443 to inside:10.0.1.50/80 duration 0:02:30 bytes 2048
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/4444 dst inside:10.0.1.200/3389 by access-group outside_in
+%ASA-6-302013: Built inbound TCP connection 12346 for outside:203.0.113.50/12345 (203.0.113.50/12345) to inside:10.0.1.100/80 (10.0.1.100/80)
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/54321 dst inside:10.0.1.100/443 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/33333 dst inside:10.0.1.100/8080 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/44444 dst inside:10.0.1.100/21 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/55555 dst inside:10.0.1.100/23 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/66666 dst inside:10.0.1.100/135 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/77777 dst inside:10.0.1.100/139 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/88888 dst inside:10.0.1.100/445 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/99999 dst inside:10.0.1.100/993 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/11111 dst inside:10.0.1.100/995 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/22222 dst inside:10.0.1.100/1433 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/33334 dst inside:10.0.1.100/3306 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/44445 dst inside:10.0.1.100/5432 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/55556 dst inside:10.0.1.100/1521 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:203.0.113.50/66667 dst inside:10.0.1.100/50000 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12345 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12346 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12347 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12348 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12349 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12350 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12351 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12352 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12353 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12354 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12355 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12356 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12357 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12358 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12359 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12360 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12361 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12362 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12363 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12364 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12365 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12366 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12367 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12368 dst inside:10.0.1.150/22 by access-group outside_in
+%ASA-4-106023: Deny tcp src outside:198.51.100.25/12369 dst inside:10.0.1.150/22 by access-group outside_in
+
+# pfSense Logs
+filterlog: 5,,,1000000103,em0,match,block,in,4,0x0,,64,1024,0,DF,6,tcp,40,203.0.113.100,10.0.1.50,443,80,0,S,1024,,
+filterlog: 5,,,1000000104,em0,match,pass,in,4,0x0,,64,1024,0,DF,6,tcp,40,10.0.1.50,203.0.113.100,80,443,0,A,1024,,
+filterlog: 5,,,1000000105,em0,match,block,in,4,0x0,,64,1024,0,DF,6,tcp,40,198.51.100.25,10.0.1.100,4444,22,0,S,1024,,
+filterlog: 5,,,1000000106,em0,match,block,in,4,0x0,,64,1024,0,DF,6,tcp,40,203.0.113.75,10.0.1.200,1337,80,0,S,1024,,
+filterlog: 5,,,1000000107,em0,match,pass,in,4,0x0,,64,1024,0,DF,6,tcp,40,10.0.1.200,8.8.8.8,53,53,0,S,1024,,
+filterlog: 5,,,1000000108,em0,match,block,in,4,0x0,,64,1024,0,DF,6,tcp,40,198.51.100.50,10.0.1.75,6667,22,0,S,1024,,
+
+# Suricata IDS Logs
+01/15/2024-12:00:00.123456  [**] [1:2100498:7] GPL CHAT IRC privmsg command [**] [Classification: policy-violation] [Priority: 3] {TCP} 203.0.113.100:6667 -> 10.0.1.50:32768
+01/15/2024-12:05:15.789012  [**] [1:2001219:20] ET MALWARE Possible Conficker HTTP Request [**] [Classification: trojan-activity] [Priority: 1] {TCP} 10.0.1.100:49152 -> 198.51.100.25:80
+01/15/2024-12:10:30.456789  [**] [1:2008578:5] ET SCAN Potential SSH Scan [**] [Classification: attempted-recon] [Priority: 2] {TCP} 203.0.113.50:22 -> 10.0.1.0/24:22
+01/15/2024-12:15:45.987654  [**] [1:2002910:6] ET TROJAN Possible Conficker HTTP Request [**] [Classification: trojan-activity] [Priority: 1] {TCP} 10.0.1.150:49200 -> 198.51.100.25:80
+01/15/2024-12:20:22.135792  [**] [1:2210020:1] SURICATA STREAM 3way handshake SYNACK resend different seq [**] [Classification: protocol-command-decode] [Priority: 3] {TCP} 203.0.113.50:12345 -> 10.0.1.100:80
+01/15/2024-12:25:37.864208  [**] [1:2013028:8] ET POLICY Suspicious inbound to mySQL port 3306 [**] [Classification: potentially-bad-traffic] [Priority: 2] {TCP} 203.0.113.50:55432 -> 10.0.1.100:3306
+01/15/2024-12:30:11.753951  [**] [1:2002157:14] ET MALWARE Suspicious POST with common data stealing keywords [**] [Classification: trojan-activity] [Priority: 1] {TCP} 10.0.1.175:49300 -> 198.51.100.25:443
+01/15/2024-12:35:29.642840  [**] [1:2210054:1] SURICATA STREAM SHUTDOWN RST invalid ack [**] [Classification: protocol-command-decode] [Priority: 3] {TCP} 198.51.100.25:4444 -> 10.0.1.100:49400
+01/15/2024-12:40:08.518437  [**] [1:2013504:11] ET POLICY Suspicious inbound to MSSQL port 1433 [**] [Classification: potentially-bad-traffic] [Priority: 2] {TCP} 203.0.113.50:33221 -> 10.0.1.100:1433
+01/15/2024-12:45:56.397162  [**] [1:2002648:6] ET MALWARE Suspicious User-Agent (HttpBrowser) [**] [Classification: trojan-activity] [Priority: 1] {TCP} 10.0.1.88:49500 -> 198.51.100.25:80
+
+# Normal Traffic Mixed In
+%ASA-6-302013: Built inbound TCP connection 12380 for outside:8.8.8.8/443 (8.8.8.8/443) to inside:10.0.1.25/53 (10.0.1.25/53)
+%ASA-6-302013: Built inbound TCP connection 12381 for outside:1.1.1.1/443 (1.1.1.1/443) to inside:10.0.1.30/53 (10.0.1.30/53)
+filterlog: 5,,,1000000200,em0,match,pass,out,4,0x0,,64,1024,0,DF,6,tcp,40,10.0.1.25,8.8.8.8,53,443,0,S,1024,,
+filterlog: 5,,,1000000201,em0,match,pass,out,4,0x0,,64,1024,0,DF,6,tcp,40,10.0.1.30,1.1.1.1,53,443,0,S,1024,,

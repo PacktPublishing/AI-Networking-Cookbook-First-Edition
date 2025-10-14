@@ -1,0 +1,43 @@
+{
+    "devices": [
+        {
+            "device_id": "router-01",
+            "type": "router",
+            "location": "DC1-Core",
+            "cpu_percent": 45.2,
+            "memory_percent": 67.8,
+            "bandwidth_percent": 75.3,
+            "latency_ms": 8.1,
+            "error_rate": 0.3,
+            "uptime_days": 127,
+            "interface_count": 24,
+            "active_connections": 1847
+        },
+        {
+            "device_id": "switch-01",
+            "type": "switch",
+            "location": "Building-A",
+            "cpu_percent": 89.1,
+            "memory_percent": 94.2,
+            "bandwidth_percent": 95.2,
+            "latency_ms": 25.4,
+            "error_rate": 5.2,
+            "uptime_days": 45,
+            "interface_count": 48,
+            "active_connections": 2341
+        },
+        {
+            "device_id": "firewall-01",
+            "type": "firewall",
+            "location": "DMZ",
+            "cpu_percent": 38.4,
+            "memory_percent": 52.1,
+            "bandwidth_percent": 65.7,
+            "latency_ms": 6.2,
+            "error_rate": 0.1,
+            "uptime_days": 89,
+            "interface_count": 8,
+            "active_connections": 892
+        }
+    ]
+}

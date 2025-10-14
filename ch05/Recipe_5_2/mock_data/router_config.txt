@@ -1,0 +1,12 @@
+hostname CoreRouter01
+interface GigabitEthernet0/0
+ description WAN Connection
+ ip address 203.0.113.1 255.255.255.252
+ no shutdown
+interface GigabitEthernet0/1
+ description LAN Connection  
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+router ospf 1
+ network 192.168.1.0 0.0.0.255 area 0
+

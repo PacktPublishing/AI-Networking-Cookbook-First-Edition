@@ -1,0 +1,91 @@
+network_segments:
+  internal:
+    - name: "Corporate LAN"
+      subnet: "10.0.1.0/24"
+      description: "Main corporate network"
+      devices:
+        - ip: "10.0.1.25"
+          hostname: "DNS-SERVER-01"
+          role: "dns_server"
+        - ip: "10.0.1.50"
+          hostname: "WEB-SERVER-01" 
+          role: "web_server"
+        - ip: "10.0.1.75"
+          hostname: "FILE-SERVER-01"
+          role: "file_server"
+        - ip: "10.0.1.88"
+          hostname: "WS-ACCOUNTING-03"
+          role: "workstation"
+        - ip: "10.0.1.100"
+          hostname: "DB-SERVER-01"
+          role: "database_server"
+        - ip: "10.0.1.150"
+          hostname: "WS-MARKETING-01"
+          role: "workstation"
+        - ip: "10.0.1.175"
+          hostname: "WS-FINANCE-05"
+          role: "workstation"
+        - ip: "10.0.1.200"
+          hostname: "APP-SERVER-01"
+          role: "application_server"
+
+  dmz:
+    - name: "DMZ Web Servers"
+      subnet: "192.168.100.0/24"
+      description: "Public-facing web servers"
+      devices:
+        - ip: "192.168.100.10"
+          hostname: "WWW-01"
+          role: "public_web_server"
+        - ip: "192.168.100.20"
+          hostname: "API-GATEWAY-01"
+          role: "api_server"
+
+known_threats:
+  malicious_ips:
+    - ip: "198.51.100.25"
+      description: "Known C2 server"
+      threat_type: "command_control"
+      first_seen: "2024-01-10"
+    - ip: "203.0.113.50"
+      description: "Scanning source"
+      threat_type: "reconnaissance" 
+      first_seen: "2024-01-12"
+    - ip: "203.0.113.75"
+      description: "Malware dropper"
+      threat_type: "malware_distribution"
+      first_seen: "2024-01-14"
+    - ip: "198.51.100.50"
+      description: "Botnet member"
+      threat_type: "botnet"
+      first_seen: "2024-01-15"
+
+  suspicious_ports:
+    - port: 1337
+      description: "Common backdoor port"
+      threat_type: "backdoor"
+    - port: 4444
+      description: "Metasploit default"
+      threat_type: "exploitation_tool"
+    - port: 6667
+      description: "IRC command channel"
+      threat_type: "command_control"
+    - port: 31337
+      description: "Elite hacker port"
+      threat_type: "backdoor"
+
+security_zones:
+  external:
+    - name: "Internet"
+      description: "External untrusted networks"
+      trust_level: "untrusted"
+  
+  internal:
+    - name: "Corporate Network"
+      description: "Internal trusted network"
+      trust_level: "trusted"
+      
+  dmz:
+    - name: "Demilitarized Zone"
+      description: "Semi-trusted public services"
+      trust_level: "semi_trusted"

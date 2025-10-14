@@ -1,0 +1,255 @@
+{
+    "malware_outbreak": {
+        "description": "Ransomware detected on multiple workstations with file encryption activity",
+        "detection_time": "2024-01-15T14:30:00Z",
+        "severity": "critical",
+        "affected_systems": [
+            "10.0.1.150",
+            "10.0.1.175",
+            "10.0.2.88"
+        ],
+        "indicators": {
+            "file_hashes": [
+                "a1b2c3d4e5f6789012345678901234567890abcd",
+                "fedcba0987654321abcdef1234567890deadbeef"
+            ],
+            "c2_ips": [
+                "198.51.100.25",
+                "203.0.113.50"
+            ],
+            "suspicious_processes": [
+                "cryptor.exe",
+                "ransom_note.txt",
+                "payload.dll"
+            ],
+            "encrypted_file_extensions": [
+                ".locked",
+                ".encrypted",
+                ".crypto"
+            ],
+            "ransom_note_locations": [
+                "C:\\Users\\Public\\README_RANSOM.txt",
+                "C:\\Users\\Administrator\\Desktop\\DECRYPT_INSTRUCTIONS.txt"
+            ]
+        },
+        "attack_vector": "phishing_email",
+        "first_detection": "endpoint_detection_response",
+        "impact_assessment": {
+            "affected_users": 15,
+            "encrypted_files": 2847,
+            "business_systems_affected": [
+                "file_server",
+                "email_server"
+            ],
+            "estimated_downtime_hours": 24
+        }
+    },
+    "data_exfiltration": {
+        "description": "Large data transfer to external destination detected during off-hours",
+        "detection_time": "2024-01-15T02:45:00Z",
+        "severity": "high",
+        "affected_systems": [
+            "10.0.1.200"
+        ],
+        "indicators": {
+            "external_ips": [
+                "198.51.100.100",
+                "203.0.113.75"
+            ],
+            "data_volume": "2.5GB",
+            "transfer_time": "02:30-03:15",
+            "protocols": [
+                "HTTPS",
+                "FTP",
+                "SFTP"
+            ],
+            "suspicious_file_access": [
+                "customer_database.sql",
+                "financial_records_2024.xlsx",
+                "employee_personal_info.csv"
+            ],
+            "user_account": "service_backup",
+            "source_directories": [
+                "C:\\Data\\CustomerDB\\",
+                "C:\\Finance\\Confidential\\",
+                "C:\\HR\\Personnel\\"
+            ]
+        },
+        "attack_vector": "compromised_service_account",
+        "first_detection": "network_monitoring",
+        "impact_assessment": {
+            "data_classification": "confidential",
+            "records_potentially_exposed": 12500,
+            "compliance_implications": [
+                "GDPR",
+                "PCI-DSS",
+                "HIPAA"
+            ],
+            "regulatory_notification_required": true
+        }
+    },
+    "credential_compromise": {
+        "description": "Administrator account accessed from unusual geographic location with privilege escalation",
+        "detection_time": "2024-01-15T09:15:00Z",
+        "severity": "high",
+        "affected_systems": [
+            "AD_SERVER_01",
+            "10.0.1.10",
+            "10.0.1.25"
+        ],
+        "indicators": {
+            "compromised_accounts": [
+                "admin.smith",
+                "svc_backup",
+                "domain_admin"
+            ],
+            "source_ip": "203.0.113.75",
+            "geographic_location": "Eastern Europe",
+            "privilege_escalation": true,
+            "suspicious_activities": [
+                "password_policy_changes",
+                "new_user_creation",
+                "group_membership_modifications",
+                "suspicious_powershell_commands"
+            ],
+            "authentication_anomalies": {
+                "failed_login_attempts": 47,
+                "successful_logins": 3,
+                "login_time_anomaly": "outside_business_hours",
+                "access_pattern": "multiple_systems_rapid_succession"
+            }
+        },
+        "attack_vector": "credential_stuffing",
+        "first_detection": "authentication_monitoring",
+        "impact_assessment": {
+            "compromised_systems_count": 8,
+            "administrative_access_level": "domain_admin",
+            "potential_lateral_movement": true,
+            "data_access_risk": "high"
+        }
+    },
+    "insider_threat": {
+        "description": "Employee accessing sensitive data outside normal job responsibilities",
+        "detection_time": "2024-01-15T16:20:00Z",
+        "severity": "medium",
+        "affected_systems": [
+            "10.0.1.200",
+            "10.0.1.100"
+        ],
+        "indicators": {
+            "employee_id": "EMP_4451",
+            "department": "Marketing",
+            "accessed_systems": [
+                "HR_Database",
+                "Financial_System",
+                "Customer_Database"
+            ],
+            "unusual_access_patterns": [
+                "weekend_access",
+                "bulk_data_downloads",
+                "cross_department_data_access"
+            ],
+            "data_accessed": [
+                "salary_information",
+                "performance_reviews",
+                "customer_contact_lists",
+                "financial_projections"
+            ],
+            "access_method": "legitimate_credentials",
+            "data_export_attempts": 5
+        },
+        "attack_vector": "insider_misuse",
+        "first_detection": "user_behavior_analytics",
+        "impact_assessment": {
+            "data_sensitivity": "confidential",
+            "policy_violations": [
+                "data_access_policy",
+                "acceptable_use_policy"
+            ],
+            "hr_investigation_required": true,
+            "legal_review_required": true
+        }
+    },
+    "ddos_attack": {
+        "description": "Distributed denial of service attack targeting public web services",
+        "detection_time": "2024-01-15T11:45:00Z",
+        "severity": "high",
+        "affected_systems": [
+            "192.168.100.10",
+            "192.168.100.20"
+        ],
+        "indicators": {
+            "attack_sources": [
+                "198.51.100.0/24",
+                "203.0.113.0/24",
+                "192.0.2.0/24"
+            ],
+            "attack_volume": "50Gbps",
+            "attack_types": [
+                "HTTP_flood",
+                "SYN_flood",
+                "UDP_amplification"
+            ],
+            "target_services": [
+                "web_server_port_80",
+                "web_server_port_443",
+                "dns_server_port_53"
+            ],
+            "legitimate_traffic_impact": "75_percent_degradation",
+            "botnet_indicators": [
+                "coordinated_timing",
+                "distributed_sources",
+                "rotating_user_agents"
+            ]
+        },
+        "attack_vector": "botnet_ddos",
+        "first_detection": "network_traffic_monitoring",
+        "impact_assessment": {
+            "service_availability": "severely_degraded",
+            "customer_impact": "high",
+            "revenue_impact": "estimated_50k_per_hour",
+            "reputation_risk": "medium"
+        }
+    },
+    "supply_chain_compromise": {
+        "description": "Third-party software update contains malicious code",
+        "detection_time": "2024-01-15T08:30:00Z",
+        "severity": "critical",
+        "affected_systems": [
+            "10.0.1.50",
+            "10.0.1.75",
+            "10.0.1.100",
+            "10.0.1.200"
+        ],
+        "indicators": {
+            "compromised_software": "NetworkMonitor v3.2.1",
+            "vendor": "TechCorp Solutions",
+            "malicious_components": [
+                "backdoor_module.dll",
+                "data_collector.exe"
+            ],
+            "c2_communications": [
+                "198.51.100.25:443",
+                "203.0.113.50:8080"
+            ],
+            "data_collection_targets": [
+                "network_configurations",
+                "credential_stores",
+                "system_inventory"
+            ],
+            "persistence_mechanisms": [
+                "service_installation",
+                "registry_modifications",
+                "scheduled_task_creation"
+            ]
+        },
+        "attack_vector": "supply_chain_injection",
+        "first_detection": "anomaly_detection",
+        "impact_assessment": {
+            "systems_with_software": 25,
+            "data_exposure_risk": "high",
+            "network_visibility_compromise": true,
+            "vendor_trust_impact": "severe"
+        }
+    }
+}

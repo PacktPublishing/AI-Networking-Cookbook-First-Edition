@@ -1,0 +1,279 @@
+network_infrastructure:
+  firewalls:
+    - name: "perimeter_fw_01"
+      ip: "10.0.0.1"
+      type: "palo_alto_pa_3220"
+      location: "network_perimeter"
+      management_ip: "10.0.0.1"
+      api_endpoint: "https://10.0.0.1/api"
+      capabilities:
+        - "block_ip_addresses"
+        - "create_security_rules" 
+        - "commit_configuration"
+        - "url_filtering"
+        - "application_control"
+      zones:
+        - "outside"
+        - "inside" 
+        - "dmz"
+      
+    - name: "internal_fw_01"
+      ip: "10.0.0.2"
+      type: "cisco_asa_5516"
+      location: "internal_network"
+      management_ip: "10.0.0.2"
+      api_endpoint: "https://10.0.0.2/api"
+      capabilities:
+        - "access_control_lists"
+        - "object_groups"
+        - "nat_rules"
+        - "vpn_termination"
+      interfaces:
+        - "outside: 10.0.0.2"
+        - "inside: 10.0.1.1"
+        - "dmz: 192.168.100.1"
+
+  switches:
+    - name: "core_sw_01"
+      ip: "10.0.0.10"
+      type: "cisco_catalyst_3850"
+      location: "network_core"
+      management_protocol: "ssh"
+      capabilities:
+        - "port_shutdown"
+        - "vlan_isolation"
+        - "port_security"
+        - "access_control_lists"
+      vlans:
+        - vlan_id: 100
+          name: "corporate"
+          subnet: "10.0.1.0/24"
+        - vlan_id: 200  
+          name: "servers"
+          subnet: "10.0.2.0/24"
+        - vlan_id: 300
+          name: "guest"
+          subnet: "10.0.3.0/24"
+
+    - name: "access_sw_01"
+      ip: "10.0.0.11" 
+      type: "cisco_catalyst_2960"
+      location: "floor_1"
+      management_protocol: "ssh"
+      connected_devices:
+        - port: "gi0/1"
+          device_ip: "10.0.1.150"
+          device_type: "workstation"
+        - port: "gi0/5"
+          device_ip: "10.0.1.175"
+          device_type: "workstation"
+        - port: "gi0/12"
+          device_ip: "10.0.1.200"
+          device_type: "server"
+
+  servers:
+    - name: "AD_SERVER_01"
+      ip: "10.0.1.10"
+      hostname: "dc01.company.local"
+      os: "Windows Server 2019"
+      role: "domain_controller"
+      services:
+        - "active_directory"
+        - "dns"
+        - "kerberos"
+      management:
+        - protocol: "rdp"
+          port: 3389
+        - protocol: "winrm"
+          port: 5985
+
+    - name: "DNS_SERVER_01"
+      ip: "10.0.1.25"
+      hostname: "dns01.company.local"
+      os: "Windows Server 2016"
+      role: "dns_server"
+      services:
+        - "dns"
+        - "dhcp"
+
+    - name: "WEB_SERVER_01"
+      ip: "10.0.1.50"
+      hostname: "web01.company.local"
+      os: "Ubuntu 20.04"
+      role: "web_server"
+      services:
+        - "apache"
+        - "php"
+        - "mysql_client"
+
+    - name: "FILE_SERVER_01"
+      ip: "10.0.1.75"
+      hostname: "files01.company.local"
+      os: "Windows Server 2019"
+      role: "file_server"
+      services:
+        - "smb"
+        - "nfs"
+        - "backup_agent"
+
+    - name: "DB_SERVER_01"
+      ip: "10.0.1.100"
+      hostname: "db01.company.local"
+      os: "CentOS 7"
+      role: "database_server"
+      services:
+        - "mysql"
+        - "postgresql"
+
+    - name: "APP_SERVER_01"
+      ip: "10.0.1.200"
+      hostname: "app01.company.local"
+      os: "Ubuntu 18.04"
+      role: "application_server"
+      services:
+        - "tomcat"
+        - "java_runtime"
+
+  workstations:
+    - name: "WS_MARKETING_01"
+      ip: "10.0.1.150"
+      hostname: "ws-mkt-01"
+      os: "Windows 10"
+      department: "marketing"
+      user: "jane.doe"
+      edr_agent: "crowdstrike"
+      
+    - name: "WS_FINANCE_05"
+      ip: "10.0.1.175"
+      hostname: "ws-fin-05"
+      os: "Windows 10"
+      department: "finance"
+      user: "john.smith"
+      edr_agent: "crowdstrike"
+
+    - name: "WS_ACCOUNTING_03"
+      ip: "10.0.2.88"
+      hostname: "ws-acc-03"
+      os: "Windows 10"
+      department: "accounting"
+      user: "mary.johnson"
+      edr_agent: "crowdstrike"
+
+  dmz_servers:
+    - name: "PUBLIC_WEB_01"
+      ip: "192.168.100.10"
+      hostname: "www.company.com"
+      os: "Ubuntu 20.04"
+      role: "public_web_server"
+      services:
+        - "nginx"
+        - "ssl_termination"
+      public_ip: "203.0.113.10"
+
+    - name: "API_GATEWAY_01"
+      ip: "192.168.100.20"
+      hostname: "api.company.com"
+      os: "Ubuntu 20.04"
+      role: "api_gateway"
+      services:
+        - "nginx"
+        - "api_proxy"
+      public_ip: "203.0.113.11"
+
+security_tools:
+  siem:
+    - name: "splunk_enterprise"
+      ip: "10.0.2.50"
+      type: "splunk"
+      api_endpoint: "https://10.0.2.50:8089"
+      capabilities:
+        - "log_ingestion"
+        - "alert_generation"
+        - "search_queries"
+        - "dashboard_creation"
+
+  edr:
+    - name: "crowdstrike_falcon"
+      type: "cloud_based"
+      api_endpoint: "https://api.crowdstrike.com"
+      capabilities:
+        - "endpoint_isolation"
+        - "process_blocking"
+        - "memory_dump_collection"
+        - "real_time_response"
+
+  vulnerability_scanner:
+    - name: "nessus_scanner"
+      ip: "10.0.2.75" 
+      type: "tenable_nessus"
+      api_endpoint: "https://10.0.2.75:8834"
+      capabilities:
+        - "vulnerability_scanning"
+        - "compliance_checking"
+        - "asset_discovery"
+
+response_procedures:
+  isolation_methods:
+    - method: "firewall_acl"
+      description: "Block traffic via firewall rules"
+      devices: ["perimeter_fw_01", "internal_fw_01"]
+      implementation_time: "2_minutes"
+      
+    - method: "switch_port_shutdown"
+      description: "Disable switch port"
+      devices: ["core_sw_01", "access_sw_01"]
+      implementation_time: "1_minute"
+      
+    - method: "edr_isolation"
+      description: "Isolate via endpoint agent"
+      devices: ["crowdstrike_falcon"]
+      implementation_time: "30_seconds"
+
+  notification_channels:
+    - type: "email"
+      recipients: ["security-team@company.com", "it-management@company.com"]
+      priority: "high"
+      
+    - type: "slack"
+      channel: "#security-incidents"
+      webhook: "https://hooks.slack.com/services/xxx"
+      
+    - type: "sms"
+      recipients: ["+1-555-0101", "+1-555-0102"]
+      priority: "critical_only"
+
+  escalation_matrix:
+    - severity: "low"
+      response_time: "4_hours"
+      approvers: ["security_analyst"]
+      
+    - severity: "medium" 
+      response_time: "2_hours"
+      approvers: ["security_analyst", "security_manager"]
+      
+    - severity: "high"
+      response_time: "1_hour"
+      approvers: ["security_manager", "it_director"]
+      
+    - severity: "critical"
+      response_time: "15_minutes"
+      approvers: ["security_manager", "it_director", "ciso"]
+
+compliance_requirements:
+  data_breach_notification:
+    - regulation: "GDPR"
+      notification_window: "72_hours"
+      authorities: ["data_protection_authority"]
+      
+    - regulation: "PCI_DSS"
+      notification_window: "immediately"
+      authorities: ["card_brands", "acquirer"]
+      
+  evidence_retention:
+    - type: "forensic_images"
+      retention_period: "7_years"
+      storage_location: "secure_evidence_vault"
+      
+    - type: "log_data"
+      retention_period: "1_year"
+      storage_location: "siem_archive"

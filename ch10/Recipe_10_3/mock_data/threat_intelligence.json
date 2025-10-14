@@ -1,0 +1,198 @@
+{
+    "indicators_of_compromise": {
+        "ip_addresses": {
+            "198.51.100.25": {
+                "threat_type": "c2_server",
+                "confidence": "high",
+                "first_seen": "2024-01-10T08:30:00Z",
+                "last_seen": "2024-01-15T14:22:00Z",
+                "associated_malware": [
+                    "conficker",
+                    "generic_trojan"
+                ],
+                "ports_used": [
+                    80,
+                    443,
+                    4444,
+                    8080
+                ],
+                "attribution": "unknown_apt_group",
+                "geographic_location": "eastern_europe"
+            },
+            "203.0.113.50": {
+                "threat_type": "scanner",
+                "confidence": "medium",
+                "first_seen": "2024-01-12T09:15:00Z",
+                "last_seen": "2024-01-15T12:45:00Z",
+                "scan_targets": [
+                    "ssh",
+                    "rdp",
+                    "web_services",
+                    "databases"
+                ],
+                "attack_pattern": "automated_scanning",
+                "geographic_location": "unknown"
+            },
+            "203.0.113.75": {
+                "threat_type": "malware_dropper",
+                "confidence": "high",
+                "first_seen": "2024-01-14T16:20:00Z",
+                "last_seen": "2024-01-15T11:30:00Z",
+                "malware_families": [
+                    "ransomware",
+                    "info_stealer"
+                ],
+                "delivery_method": "exploit_kit",
+                "geographic_location": "asia_pacific"
+            }
+        },
+        "file_hashes": {
+            "a1b2c3d4e5f6789012345678901234567890abcd": {
+                "file_type": "executable",
+                "malware_family": "generic_trojan",
+                "threat_level": "high",
+                "first_seen": "2024-01-08T12:00:00Z",
+                "file_names": [
+                    "cryptor.exe",
+                    "updater.exe",
+                    "svchost.exe"
+                ],
+                "behavior": [
+                    "network_communication",
+                    "file_encryption",
+                    "registry_modification"
+                ]
+            },
+            "fedcba0987654321abcdef1234567890deadbeef": {
+                "file_type": "dll",
+                "malware_family": "payload_dropper",
+                "threat_level": "medium",
+                "first_seen": "2024-01-10T15:30:00Z",
+                "file_names": [
+                    "payload.dll",
+                    "helper.dll"
+                ],
+                "behavior": [
+                    "persistence_mechanism",
+                    "data_collection"
+                ]
+            }
+        },
+        "domains": {
+            "malware-c2.example.com": {
+                "threat_type": "command_control",
+                "ip_resolution": [
+                    "198.51.100.25"
+                ],
+                "first_seen": "2024-01-05T10:00:00Z",
+                "domain_age": "30_days",
+                "registrar": "suspicious_registrar_llc"
+            }
+        }
+    },
+    "attack_patterns": {
+        "port_scanning": {
+            "description": "Systematic port enumeration",
+            "indicators": {
+                "unique_ports_threshold": 10,
+                "time_window_minutes": 60,
+                "success_rate_threshold": 0.2
+            },
+            "common_ports": [
+                21,
+                22,
+                23,
+                25,
+                53,
+                80,
+                110,
+                135,
+                139,
+                143,
+                443,
+                993,
+                995,
+                1433,
+                3306,
+                3389,
+                5432
+            ]
+        },
+        "brute_force_ssh": {
+            "description": "SSH credential attacks",
+            "indicators": {
+                "attempt_threshold": 20,
+                "time_window_minutes": 30,
+                "target_ports": [
+                    22,
+                    2222
+                ],
+                "success_rate_threshold": 0.05
+            }
+        },
+        "brute_force_rdp": {
+            "description": "RDP credential attacks",
+            "indicators": {
+                "attempt_threshold": 15,
+                "time_window_minutes": 30,
+                "target_ports": [
+                    3389
+                ],
+                "success_rate_threshold": 0.1
+            }
+        },
+        "malware_c2_communication": {
+            "description": "Command and control communications",
+            "indicators": {
+                "suspicious_ports": [
+                    1337,
+                    4444,
+                    6667,
+                    8080,
+                    31337
+                ],
+                "known_bad_ips": [
+                    "198.51.100.25",
+                    "203.0.113.75"
+                ],
+                "periodic_contact_threshold": 5,
+                "time_window_hours": 24
+            }
+        }
+    },
+    "threat_actors": {
+        "apt_unknown_001": {
+            "name": "Unknown APT Group 001",
+            "sophistication": "medium",
+            "targets": [
+                "financial_services",
+                "government",
+                "healthcare"
+            ],
+            "ttps": [
+                "spear_phishing",
+                "credential_theft",
+                "lateral_movement"
+            ],
+            "infrastructure": [
+                "198.51.100.25",
+                "malware-c2.example.com"
+            ],
+            "active_since": "2023-08-15"
+        }
+    },
+    "detection_rules": {
+        "high_confidence_indicators": [
+            "communication_with_known_c2",
+            "execution_of_known_malware_hash",
+            "dns_lookup_of_malicious_domain"
+        ],
+        "behavioral_indicators": [
+            "port_scanning_activity",
+            "brute_force_attempts",
+            "unusual_outbound_connections",
+            "large_data_transfers",
+            "off_hours_activity"
+        ]
+    }
+}

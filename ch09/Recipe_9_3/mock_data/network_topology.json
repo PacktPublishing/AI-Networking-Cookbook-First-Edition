@@ -1,0 +1,166 @@
+{
+    "metadata": {
+        "network_name": "Corporate_Infrastructure",
+        "last_updated": "2024-01-15",
+        "total_devices": 6,
+        "topology_version": "v2.1"
+    },
+    "devices": [
+        {
+            "device_id": "core-router-01",
+            "type": "router",
+            "role": "core",
+            "location": "DC1-Core",
+            "vendor": "Cisco",
+            "model": "ASR9000",
+            "capacity_gbps": 100,
+            "current_utilization": 67,
+            "interfaces": [
+                {
+                    "name": "GigE0/0/1",
+                    "speed_gbps": 10,
+                    "utilization": 85,
+                    "connected_to": "edge-switch-01"
+                },
+                {
+                    "name": "GigE0/0/2",
+                    "speed_gbps": 10,
+                    "utilization": 72,
+                    "connected_to": "edge-switch-02"
+                },
+                {
+                    "name": "GigE0/1/1",
+                    "speed_gbps": 40,
+                    "utilization": 45,
+                    "connected_to": "core-router-02"
+                }
+            ],
+            "features": [
+                "OSPF",
+                "BGP",
+                "QoS"
+            ],
+            "redundancy": "dual-homed"
+        },
+        {
+            "device_id": "core-router-02",
+            "type": "router",
+            "role": "core",
+            "location": "DC2-Core",
+            "vendor": "Cisco",
+            "model": "ASR9000",
+            "capacity_gbps": 100,
+            "current_utilization": 58,
+            "interfaces": [
+                {
+                    "name": "GigE0/0/1",
+                    "speed_gbps": 10,
+                    "utilization": 63,
+                    "connected_to": "edge-switch-03"
+                },
+                {
+                    "name": "GigE0/1/1",
+                    "speed_gbps": 40,
+                    "utilization": 45,
+                    "connected_to": "core-router-01"
+                }
+            ],
+            "features": [
+                "OSPF",
+                "BGP",
+                "QoS"
+            ],
+            "redundancy": "dual-homed"
+        },
+        {
+            "device_id": "edge-switch-01",
+            "type": "switch",
+            "role": "edge",
+            "location": "Building-A",
+            "vendor": "Arista",
+            "model": "7280R",
+            "capacity_gbps": 50,
+            "current_utilization": 89,
+            "interfaces": [
+                {
+                    "name": "Eth1",
+                    "speed_gbps": 10,
+                    "utilization": 85,
+                    "connected_to": "core-router-01"
+                },
+                {
+                    "name": "Eth2",
+                    "speed_gbps": 1,
+                    "utilization": 95,
+                    "connected_to": "access-switch-01"
+                },
+                {
+                    "name": "Eth3",
+                    "speed_gbps": 1,
+                    "utilization": 88,
+                    "connected_to": "access-switch-02"
+                }
+            ],
+            "features": [
+                "LACP",
+                "STP",
+                "VLANs"
+            ],
+            "redundancy": "single-homed"
+        },
+        {
+            "device_id": "access-switch-01",
+            "type": "switch",
+            "role": "access",
+            "location": "Building-A-Floor1",
+            "vendor": "Cisco",
+            "model": "Catalyst9300",
+            "capacity_gbps": 10,
+            "current_utilization": 65,
+            "interfaces": [
+                {
+                    "name": "Gig1/0/1",
+                    "speed_gbps": 1,
+                    "utilization": 95,
+                    "connected_to": "edge-switch-01"
+                }
+            ],
+            "features": [
+                "PoE",
+                "VLANs",
+                "STP"
+            ],
+            "redundancy": "none"
+        }
+    ],
+    "performance_issues": [
+        {
+            "device_id": "edge-switch-01",
+            "issue": "High utilization on uplink interfaces",
+            "severity": "high",
+            "impact": "Potential bottleneck affecting Building-A users",
+            "detected_at": "2024-01-15T09:30:00Z"
+        },
+        {
+            "device_id": "access-switch-01",
+            "issue": "Interface utilization approaching capacity",
+            "severity": "medium",
+            "impact": "Performance degradation during peak hours",
+            "detected_at": "2024-01-15T10:15:00Z"
+        }
+    ],
+    "optimization_scenarios": [
+        {
+            "scenario": "high_utilization_uplinks",
+            "recommended_action": "upgrade_interfaces",
+            "success_rate": 0.92,
+            "average_improvement": "40%"
+        },
+        {
+            "scenario": "single_point_failure",
+            "recommended_action": "add_redundancy",
+            "success_rate": 0.89,
+            "average_improvement": "95%"
+        }
+    ]
+}

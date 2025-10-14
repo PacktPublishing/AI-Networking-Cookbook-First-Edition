@@ -1,0 +1,11 @@
+hostname UnsafeSwitch
+enable password cisco
+username admin password admin
+line vty 0 4
+ password telnet
+ login
+snmp-server community public RW
+access-list 100 permit ip any any
+interface range FastEthernet0/1-24
+ switchport mode access
+ switchport access vlan 1

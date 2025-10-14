@@ -1,0 +1,65 @@
+[
+  {
+    "question_id": "ospf_config",
+    "question": "Configure OSPF area 0 on a Cisco router",
+    "category": "configuration",
+    "model": "gpt-3.5-turbo",
+    "response": "To configure OSPF area 0 on a Cisco router, follow these steps:\n\n1. Enter global configuration mode by typing:\n```\nenable\nconfigure terminal\n```\n\n2. Enable OSPF routing by typing:\n```\nrouter ospf 1\n```\nNote: \"1\" is the process ID, which can be any number between 1 and 65535.\n\n3. Configure the router ID by typing:\n```\nrouter-id <router-id>\n```\nReplace `<router-id>` with the desired router ID.\n\n4. Configure the OSPF network by typing:\n```\nnetwork <network> <wildcard-mask> area 0\n```\nReplace `<network>` with the network address and `<wildcard-mask>` with the wildcard"
+  },
+  {
+    "question_id": "bgp_troubleshoot",
+    "question": "BGP neighbor stuck in Idle state. What to check?",
+    "category": "troubleshooting",
+    "model": "gpt-3.5-turbo",
+    "response": "If a BGP neighbor is stuck in the Idle state, there are several things you can check to troubleshoot the issue:\n\n1. Check the BGP configuration on both routers to ensure that the neighbor relationship is properly configured with the correct IP address and AS number.\n\n2. Verify that there is reachability between the two BGP neighbors by checking the routing table and running ping or traceroute commands.\n\n3. Check for any firewall or access control list (ACL) rules that may be blocking BGP traffic between the two neighbors.\n\n4. Verify that the BGP session is using the correct source IP address and interface.\n\n5. Check for any mismatched BGP timers or authentication settings between the two neighbors.\n\n6. Verify that the BGP process"
+  },
+  {
+    "question_id": "vlan_basic",
+    "question": "Create VLAN 100 named Sales on a switch",
+    "category": "configuration",
+    "model": "gpt-3.5-turbo",
+    "response": "To create VLAN 100 named Sales on a switch, you can follow these steps:\n\n1. Access the switch's command line interface (CLI) using a terminal emulator program such as PuTTY or SecureCRT.\n\n2. Enter privileged EXEC mode by typing the following command:\n```\nenable\n```\n\n3. Enter global configuration mode by typing the following command:\n```\nconfigure terminal\n```\n\n4. Create VLAN 100 named Sales by typing the following command:\n```\nvlan 100\nname Sales\n```\n\n5. Verify that the VLAN has been successfully created by typing the following command:\n```\nshow vlan brief\n```\n\nYou should see VLAN 100 listed with the name Sales in the output.\n\n6. Exit global configuration mode by"
+  },
+  {
+    "question_id": "ospf_config",
+    "question": "Configure OSPF area 0 on a Cisco router",
+    "category": "configuration",
+    "model": "gpt-4o-mini",
+    "response": "To configure OSPF (Open Shortest Path First) on a Cisco router and set up Area 0 (the backbone area), you will need to follow these steps. Below is a basic example of how to do this. Make sure you have console access to the router and are in privileged EXEC mode.\n\n### Step-by-Step Configuration\n\n1. **Access the Router:**\n   Connect to your Cisco router using a console cable or SSH.\n\n2. **Enter Global Configuration Mode:**\n   ```bash\n   enable\n   configure terminal\n   ```\n\n3. **Configure OSPF:**\n   You need to specify a router ID and enable OSPF for the desired interfaces. Here\u2019s an example configuration:\n\n   ```bash\n  "
+  },
+  {
+    "question_id": "bgp_troubleshoot",
+    "question": "BGP neighbor stuck in Idle state. What to check?",
+    "category": "troubleshooting",
+    "model": "gpt-4o-mini",
+    "response": "When a BGP (Border Gateway Protocol) neighbor is stuck in the Idle state, it indicates that the BGP process is not able to establish a connection with the neighbor. Here are several steps you can take to troubleshoot the issue:\n\n1. **Check BGP Configuration:**\n   - Ensure that the BGP configuration on both routers (local and remote) is correct. Verify that the neighbor IP address is correctly configured.\n   - Check that the AS (Autonomous System) numbers are correctly configured and match the expected values.\n\n2. **Verify Network Connectivity:**\n   - Use `ping` to check basic IP connectivity between the two BGP peers. If the ping fails, there may be a network issue.\n   - Check for any fire"
+  },
+  {
+    "question_id": "vlan_basic",
+    "question": "Create VLAN 100 named Sales on a switch",
+    "category": "configuration",
+    "model": "gpt-4o-mini",
+    "response": "To create VLAN 100 named \"Sales\" on a switch, you typically need to access the switch's command-line interface (CLI). The exact commands may vary slightly depending on the switch manufacturer (Cisco, Juniper, HP, etc.), but here are the general steps for a Cisco switch:\n\n1. **Access the Switch CLI**: Connect to the switch via console cable, SSH, or Telnet.\n\n2. **Enter Privileged EXEC Mode**: You may need to enter privileged EXEC mode by typing:\n   ```\n   enable\n   ```\n\n3. **Enter Global Configuration Mode**: Type the following command to enter global configuration mode:\n   ```\n   configure terminal\n   ```\n\n4. **Create the VLAN**: Use the following"
+  },
+  {
+    "question_id": "ospf_config",
+    "question": "Configure OSPF area 0 on a Cisco router",
+    "category": "configuration",
+    "model": "gpt-4o",
+    "response": "Configuring OSPF (Open Shortest Path First) on a Cisco router involves several steps. Below is a basic guide to configure OSPF for area 0 on a Cisco router. This example assumes you have basic access to the router and are familiar with Cisco's IOS command-line interface.\n\n### Steps to Configure OSPF Area 0:\n\n1. **Access the Router:**\n   - Connect to your Cisco router using a console cable, SSH, or Telnet.\n\n2. **Enter Global Configuration Mode:**\n   ```plaintext\n   Router> enable\n   Router# configure terminal\n   ```\n\n3. **Enable OSPF Routing:**\n   - Use the `router ospf` command followed by a process ID."
+  },
+  {
+    "question_id": "bgp_troubleshoot",
+    "question": "BGP neighbor stuck in Idle state. What to check?",
+    "category": "troubleshooting",
+    "model": "gpt-4o",
+    "response": "When a BGP neighbor is stuck in the Idle state, it indicates that the BGP session is not being established. Here are several steps you can take to troubleshoot and resolve the issue:\n\n1. **Check Physical Connectivity:**\n   - Ensure that there is physical connectivity between the two BGP peers. Verify that the interfaces are up and that there are no cable or hardware issues.\n\n2. **Verify IP Reachability:**\n   - Ensure that the IP address of the BGP neighbor is reachable. Use tools like `ping` or `traceroute` to confirm connectivity.\n\n3. **Check BGP Configuration:**\n   - Verify that the BGP configuration is correct on both peers. Ensure that the neighbor IP address is correctly configured and"
+  },
+  {
+    "question_id": "vlan_basic",
+    "question": "Create VLAN 100 named Sales on a switch",
+    "category": "configuration",
+    "model": "gpt-4o",
+    "response": "To create a VLAN on a network switch, you'll typically need to access the switch's command-line interface (CLI). The exact commands can vary depending on the switch manufacturer and model, but I'll provide a general example using Cisco IOS, which is commonly used in many network environments.\n\nHere\u2019s how you can create VLAN 100 named \"Sales\" on a Cisco switch:\n\n1. **Access the Switch:**\n   - Connect to the switch using a console cable, SSH, or Telnet.\n\n2. **Enter Privileged EXEC Mode:**\n   - You may need to enter privileged EXEC mode to make configuration changes. Use the `enable` command and enter the password if prompted.\n   ```plaintext\n   Switch> enable\n   ```\n\n3."
+  }
+]

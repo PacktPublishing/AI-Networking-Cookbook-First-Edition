@@ -1,0 +1,7 @@
+hostname InsecureDevice
+enable password cisco123
+username admin password admin
+line vty 0 4
+ password telnet
+ login
+access-list 100 permit ip any any

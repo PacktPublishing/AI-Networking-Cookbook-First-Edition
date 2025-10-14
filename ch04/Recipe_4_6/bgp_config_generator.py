@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+"""
+Sample BGP Configuration Generator
+Create sample BGP config for documentation
+"""
+
+from pathlib import Path
+
+def create_sample_bgp_config():
+    """Create sample BGP configuration"""
+    
+    # BGP Configuration
+    bgp_config = """hostname Router-BGP-01
+!
+router bgp 65001
+ bgp router-id 10.1.1.1
+ bgp log-neighbor-changes
+ neighbor 203.0.113.1 remote-as 65002
+ neighbor 203.0.113.1 description ISP-Connection-Primary
+ neighbor 203.0.113.5 remote-as 65003  
+ neighbor 203.0.113.5 description ISP-Connection-Backup
+ neighbor 192.168.1.2 remote-as 65001
+ neighbor 192.168.1.2 description Internal-iBGP-Peer
+ neighbor 192.168.1.2 next-hop-self
+ !
+ address-family ipv4
+  network 192.168.10.0 mask 255.255.255.0
+  network 192.168.20.0 mask 255.255.255.0
+  neighbor 203.0.113.1 activate
+  neighbor 203.0.113.1 soft-reconfiguration inbound
+  neighbor 203.0.113.5 activate
+  neighbor 203.0.113.5 soft-reconfiguration inbound
+  neighbor 192.168.1.2 activate
+  neighbor 192.168.1.2 route-reflector-client
+ exit-address-family
+!
+interface GigabitEthernet0/0
+ description External BGP Connection - Primary ISP
+ ip address 203.0.113.2 255.255.255.252
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description External BGP Connection - Backup ISP
+ ip address 203.0.113.6 255.255.255.252
+ no shutdown
+!
+interface GigabitEthernet0/2
+ description Internal iBGP Connection
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+!
+ip route 192.168.10.0 255.255.255.0 Null0
+ip route 192.168.20.0 255.255.255.0 Null0
+!"""
+
+    # Save configuration
+    Path("configs").mkdir(exist_ok=True)
+    
+    with open("configs/bgp-config.txt", 'w') as f:
+        f.write(bgp_config)
+    
+    print("Sample BGP configuration created:")
+    print("  - configs/bgp-config.txt")
+
+if __name__ == "__main__":
+    create_sample_bgp_config()
