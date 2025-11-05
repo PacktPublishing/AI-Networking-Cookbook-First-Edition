@@ -205,3 +205,51 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# AI Network Cookbook specific
+# Data directories (Ollama models, vector DBs, etc.)
+data/
+*/data/
+**/data/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# SSH keys and certificates
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+id_ecdsa
+id_ecdsa.pub
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+
+# AI Model files
+*.pth
+*.h5
+*.pkl
+*.pickle
+*.bin
+*.safetensors
+*.onnx
+*.pt
+*.ckpt
+
+# Fine-tuned model IDs (may contain sensitive info)
+*fine_tuned_model_id.txt
+fine_tuned_model_id.txt
+
+# Generated outputs that might contain sensitive data
+outputs/
+**/outputs/
+*.log
