@@ -253,3 +253,9 @@ fine_tuned_model_id.txt
 outputs/
 **/outputs/
 *.log
+
+# Streamlit secrets
+secrets.toml
+**/secrets.toml
+.streamlit/secrets.toml
+**/.streamlit/secrets.toml
